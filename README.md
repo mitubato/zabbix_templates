@@ -1,4 +1,4 @@
-# zabbix_templates
+# ICMP_Ping_status_counts.xtemplates
 監視中のicmppingの総計・OK/NGのカウントをするTemplateです。
 テンプレート中でZabbixAPIにアクセスしているので下記のマクロを設定しておく必要があります。
 または書き換えてください。
