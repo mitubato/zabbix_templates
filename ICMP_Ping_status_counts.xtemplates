@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.2</version>
+    <date>2023-05-24T10:39:47Z</date>
+    <template_groups>
+        <template_group>
+            <uuid>5d1229c126b34484bf83c39a0bdce1ab</uuid>
+            <name>musenNW</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>2f13f870c20144f699338560782645b6</uuid>
+            <template>ICMP Ping status counts</template>
+            <name>ICMP Ping status counts</name>
+            <groups>
+            </groups>
+            <items>
+                <item>
+                    <uuid>c8422e8962bf4345bc9b45bef304f767</uuid>
+                    <name>PingSummary_NGCounts</name>
+                    <type>HTTP_AGENT</type>
+                    <key>icmpping_ngCounts</key>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>value = JSON.parse(value);
+value = value.result;
+if (value.length == 0){
+    return 0;
+}
+var cnt = 0;
+for (i=0;i &lt; value.length;i++ ){
+   if (value[i].lastvalue == &quot;0&quot;){
+       cnt++;
+   }
+}
+return cnt;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <url>http://{$HA_IP_ADDRESS}/api_jsonrpc.php</url>
+                    <posts>{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;method&quot;: &quot;item.get&quot;,
+  &quot;params&quot;: {
+    &quot;output&quot;: [
+      &quot;lastvalue&quot;
+    ],
+    &quot;monitored&quot;: true,
+    &quot;search&quot;: {
+      &quot;name&quot;: &quot;ICMP ping&quot;,
+      &quot;key_&quot;: &quot;icmpping&quot;
+    }
+  },
+  &quot;auth&quot;: &quot;{$API_KEY}&quot;,
+  &quot;id&quot;: &quot;1&quot;
+}</posts>
+                    <post_type>JSON</post_type>
+                    <request_method>POST</request_method>
+                </item>
+                <item>
+                    <uuid>42fec34a3c194f04b0950ea220424173</uuid>
+                    <name>PingSummary_OKCounts</name>
+                    <type>HTTP_AGENT</type>
+                    <key>icmpping_okCounts</key>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>value = JSON.parse(value);
+value = value.result;
+if (value.length == 0){
+    return 0;
+}
+var cnt = 0;
+for (i=0;i &lt; value.length;i++ ){
+   if (value[i].lastvalue == &quot;1&quot;){
+       cnt++;
+   }
+}
+return cnt;</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <url>http://{$HA_IP_ADDRESS}/api_jsonrpc.php</url>
+                    <posts>{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;method&quot;: &quot;item.get&quot;,
+  &quot;params&quot;: {
+    &quot;output&quot;: [
+      &quot;lastvalue&quot;
+    ],
+    &quot;monitored&quot;: true,
+    &quot;search&quot;: {
+      &quot;name&quot;: &quot;ICMP ping&quot;,
+      &quot;key_&quot;: &quot;icmpping&quot;
+    }
+  },
+  &quot;auth&quot;: &quot;{$API_KEY}&quot;,
+  &quot;id&quot;: &quot;1&quot;
+}</posts>
+                    <post_type>JSON</post_type>
+                    <request_method>POST</request_method>
+                </item>
+                <item>
+                    <uuid>7e1f2a4fba5e45778a17c1c47b1187b0</uuid>
+                    <name>PingSummary_NodeCounts</name>
+                    <type>CALCULATED</type>
+                    <key>icmp_nodeCounts</key>
+                    <params>count(last_foreach(/*/icmpping,1w))</params>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
