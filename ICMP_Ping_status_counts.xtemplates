@@ -112,6 +112,20 @@ return cnt;</parameter>
                     <params>count(last_foreach(/*/icmpping,1w))</params>
                 </item>
             </items>
+            <tags>
+                <tag>
+                    <tag>component</tag>
+                    <value>health</value>
+                </tag>
+                <tag>
+                    <tag>component</tag>
+                    <value>network</value>
+                </tag>
+                <tag>
+                    <tag>component</tag>
+                    <value>summary</value>
+                </tag>
+            </tags>
         </template>
     </templates>
 </zabbix_export>
