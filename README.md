@@ -12,7 +12,7 @@ licenseはMITです。
 計算item  
 ```
 count(last_foreach(/*/icmpping,0,"eq"))
-count(last_foreach(/*/icmpping?[value="0"]))
+count(last_foreach(/*/icmpping?[lastvalue="0"]))
 ```  
 　→集計関数のcount、last_foreachにはlastvalueと比較する機能はありません(Zabbix6.4)  
    
