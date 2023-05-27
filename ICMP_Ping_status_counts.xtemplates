@@ -5,7 +5,7 @@
     <template_groups>
         <template_group>
             <uuid>5d1229c126b34484bf83c39a0bdce1ab</uuid>
-            <name>musenNW</name>
+            <name>Templates</name>
         </template_group>
     </template_groups>
     <templates>
@@ -13,8 +13,6 @@
             <uuid>2f13f870c20144f699338560782645b6</uuid>
             <template>ICMP Ping status counts</template>
             <name>ICMP Ping status counts</name>
-            <groups>
-            </groups>
             <items>
                 <item>
                     <uuid>c8422e8962bf4345bc9b45bef304f767</uuid>
